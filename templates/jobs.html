@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>{{title}}</title>
+</head>
+<body>
+    {% for item in jobs %}
+        <div class="">
+            <div><a href="{{ item.link }}">link</a></div>
+            <div>{% autoescape false %}{{ item.content }}{% endautoescape %}</div>
+        </div>
+    {% endfor %}
+</body>
+</html>
