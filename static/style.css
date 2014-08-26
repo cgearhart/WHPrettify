@@ -16,6 +16,27 @@ body {
 .button {
   cursor: pointer;
   text-decoration: none;
+  margin-bottom:.12em;
+}
+
+.stack {
+  display:block;
+  height:1em;
+  float:left;
+  margin-left:.25em;
+  margin-right:.25em;
+}
+
+.content {
+  display:block;
+  clear:both;
+  padding-top:.5em;
+}
+
+.post {
+  display:block;
+  
+  padding-left:2em;
 }
 
 .show {
@@ -25,4 +46,3 @@ body {
 .hide {
   display: none;
 }
-

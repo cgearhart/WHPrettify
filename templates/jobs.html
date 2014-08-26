@@ -4,35 +4,42 @@
 	<title>{{title}}</title>
 	<link rel="stylesheet" type="text/css" href="/static/style.css">
 	<script language="javascript" type="text/javascript">
-	function toggle(post_id) {
-		console.log(post_id.toString());
-		var ele = document.getElementById(post_id.toString());
-		var btn = document.getElementById(post_id.toString() + "_btn")
-		if (ele.className == "show") {
-			ele.className = "hide";
-			btn.innerHTML = "[show]";
-			btn.className = "button expand";
-		} else {
-			ele.className = "show";
-			btn.innerHTML = "[hide]";
-			btn.className = "button collapse";
-		}
+	function setClass(doc_id, classString) {
+		var ele = document.getElementById(doc_id);
+		ele.className = classString;
+	}
+
+	function hide(post_id) {
+		setClass(post_id, "hide");
+		setClass(post_id + "_btn", "button stack	show");
+	}
+
+	function show(post_id) {
+		setClass(post_id, "show");
+		setClass(post_id + "_btn", "button stack	hide");
 	}
 	</script>
 </head>
 <body>
 	<div class="container">
-	<ol>
+	<div id="closed">
 		{% for item in jobs %}
-			<li>
-				<div class="button collapse" id="{{ item.id }}_btn" onclick="toggle({{ item.id }})">[hide]</div>
-				<div class="show" id="{{ item.id }}">
+			<div class="button stack hide" id="{{ item.id }}_btn" onclick="show('{{ item.id }}')"> [{{ loop.index }}]
+			</div>
+		{% endfor %}
+	</div>
+	<div class="content">
+		{% for item in jobs %}
+			<div class="show" id="{{ item.id }}">
+				<div class="stack">{{ loop.index }}.</div>
+				<div class="button" onclick="hide('{{ item.id }}')">[hide]</div>
+				<div class="post">
 					<div><a href="{{ item.link }}">link</a></div>
 					<div>{% autoescape false %}{{ item.content }}{% endautoescape %}</div>
 				</div>
-			</li>
+			</div>
 		{% endfor %}
-	</ol>
+	</div>
 	</div>
 </body>
 </html>
