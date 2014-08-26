@@ -1,0 +1,28 @@
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  width:80%;
+  margin:auto;
+}
+
+.button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+

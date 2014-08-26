@@ -1,14 +1,38 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
-    <title>{{title}}</title>
+	<title>{{title}}</title>
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+	<script language="javascript" type="text/javascript">
+	function toggle(post_id) {
+		console.log(post_id.toString());
+		var ele = document.getElementById(post_id.toString());
+		var btn = document.getElementById(post_id.toString() + "_btn")
+		if (ele.className == "show") {
+			ele.className = "hide";
+			btn.innerHTML = "[show]";
+			btn.className = "button expand";
+		} else {
+			ele.className = "show";
+			btn.innerHTML = "[hide]";
+			btn.className = "button collapse";
+		}
+	}
+	</script>
 </head>
 <body>
-    {% for item in jobs %}
-        <div class="">
-            <div><a href="{{ item.link }}">link</a></div>
-            <div>{% autoescape false %}{{ item.content }}{% endautoescape %}</div>
-        </div>
-    {% endfor %}
+	<div class="container">
+	<ol>
+		{% for item in jobs %}
+			<li>
+				<div class="button collapse" id="{{ item.id }}_btn" onclick="toggle({{ item.id }})">[hide]</div>
+				<div class="show" id="{{ item.id }}">
+					<div><a href="{{ item.link }}">link</a></div>
+					<div>{% autoescape false %}{{ item.content }}{% endautoescape %}</div>
+				</div>
+			</li>
+		{% endfor %}
+	</ol>
+	</div>
 </body>
 </html>
