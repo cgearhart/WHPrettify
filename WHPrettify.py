@@ -1,4 +1,5 @@
 
+import re
 import sys
 import urllib
 import urllib2
@@ -49,7 +50,7 @@ if __name__ == "__main__":
 
     JOBS = []
     for td in td_posts:
-        link = td.find("a", text="link")
+        link = td.find("a", text=re.compile("\d+ (\w+) (?:ago)"))
         if link:
             new_job = {}
             new_job['id'] = parse_qs(urlparse(link['href']).query)['id'][0]
@@ -57,4 +58,7 @@ if __name__ == "__main__":
             new_job['content'] = td.find("span", "comment")
             JOBS.append(new_job)
 
+    print "Title: ", TITLE
+    print "Posts: ", len(td_posts)
+    print "Jobs: ", len(JOBS)
     app.run(host='0.0.0.0')
